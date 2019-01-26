@@ -2,7 +2,7 @@ package assignmentOne;
 
 public class Converter {
 	
-	Double dec;
+	Long dec;
 	String hexa;
 	String octal;
 	String binary;
@@ -11,15 +11,26 @@ public class Converter {
 	
 	String output;
 	
-	public void getDecimal(String str, char type) {
+	char type;
+	
+	Converter(char t){
+		type = t;
+	}
+	
+	public void getDecimal(String str) {
 		switch(type) {
+			case 'd':
+				break;
 			case 'h':
+					dec = Long.parseLong(str,16);
 				break;
 				
 			case 'o':
+					dec = Long.parseLong(str,8);
 				break;
 				
 			case 'b':
+					dec = Long.parseLong(str,2);
 				break;
 				
 			case 't':
@@ -28,42 +39,44 @@ public class Converter {
 						int c = (int)str.charAt(i);
 						temp.append(c);
 					}
-					dec = Double.parseDouble(temp.toString());
+					dec = Long.parseLong(temp.toString());
+				break;
+			case 'c':
+					dec = Long.parseLong(str,16);
 				break;
 				
 			case 'f':
 					dec = floatParse(str);
 				break;
-				
 		}
 		return;
 	}
 	
-	private Double floatParse(String str) {
+	private Long floatParse(String str) {
 		double a;
 		int b;
 		String spl[] = str.split("(e+)|(E+)", 2);
 		a = Double.parseDouble(spl[0]);
 		b = Integer.parseInt(spl[1]);
-		return (a*Math.pow(10, b));
+		return (long) (a*Math.pow(10, b));
 	}
 	
 	public String getHex() {
-		return "Ox" + Double.toHexString(dec);
+		return "Ox" + Long.toHexString(dec);
 	}
 	
 	public String getOct() {
-		return "O";// + Double.toOctalString(dec);
+		return "O" + Long.toOctalString(dec);
 	}
 	
 	public String getBin() {
-		return "Ob";// + Double.toBinaryString(dec);
+		return "Ob" + Long.toBinaryString(dec);
 	}
 	
 	//we should always expect to divide by 10 until there's only one digit before the decimal point
 	public String getFloat() {
 		int power;
-		double value;
+		Double value;
 		
 		power = (dec.toString().length()) - 1;
 		value = dec/Math.pow(10, power);
