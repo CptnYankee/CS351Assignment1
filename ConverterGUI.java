@@ -94,7 +94,6 @@ public class ConverterGUI {
 
 			private void btnConvActionPerformed(ActionEvent evt) {
 				
-				
 			}
         });
         
@@ -256,5 +255,8 @@ public class ConverterGUI {
 
         frm.pack();
     }
+	void openWindow() {
+		frm.setVisible(true);
+	}
 }
 
