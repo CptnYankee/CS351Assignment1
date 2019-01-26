@@ -9,7 +9,7 @@ public class Converter {
 	String txt;
 	String sci;
 	
-	String output;
+	String fieldText;
 	
 	char type;
 	
