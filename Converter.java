@@ -125,7 +125,7 @@ public class Converter {
 		int power;
 		Double value;
 		
-		power = (dec.toString().length()) - 1;
+		power = (Integer.toString(dec).length()) - 1;
 		value = dec/Math.pow(10, power);
 		StringBuilder str = new StringBuilder();
 		
