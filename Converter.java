@@ -22,15 +22,15 @@ public class Converter {
 			case 'd':
 				break;
 			case 'h':
-					dec = Long.parseLong(str,16);
+					dec = Integer.parseInt(str,16);
 				break;
 				
 			case 'o':
-					dec = Long.parseLong(str,8);
+					dec = Integer.parseInt(str,8);
 				break;
 				
 			case 'b':
-					dec = Long.parseLong(str,2);
+					dec = binaryParse(str);
 				break;
 				
 			case 't':
@@ -39,10 +39,10 @@ public class Converter {
 						int c = (int)str.charAt(i);
 						temp.append(c);
 					}
-					dec = Long.parseLong(temp.toString());
+					dec = Integer.parseInt(temp.toString());
 				break;
 			case 'c':
-					dec = Long.parseLong(str,16);
+					dec = Integer.parseInt(str,16);
 				break;
 				
 			case 'f':
@@ -52,13 +52,28 @@ public class Converter {
 		return;
 	}
 	
-	private Long floatParse(String str) {
+	private int binaryParse(String str) {
+		int temp = Integer.parseInt(str);
+		
+		int decimal = 0;
+		//pos keeps track of the power we are working with
+		int pos = 0;
+		
+		while(temp > 0) {
+			decimal += temp%10 * Math.pow(2,pos);
+			temp /= 10;
+			pos++;
+		}
+		return decimal;
+	}
+	
+	private int floatParse(String str) {
 		double a;
 		int b;
 		String spl[] = str.split("(e+)|(E+)", 2);
 		a = Double.parseDouble(spl[0]);
 		b = Integer.parseInt(spl[1]);
-		return (long) (a*Math.pow(10, b));
+		return (int)(a*Math.pow(10, b));
 	}
 	
 	public String getHex() {
