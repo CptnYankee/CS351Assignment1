@@ -1,6 +1,21 @@
 package assignmentOne;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class Converter {
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+
+public class Converter extends JPanel{
 	
 	int dec;
 	String hexa;
@@ -9,14 +24,26 @@ public class Converter {
 	String txt;
 	String sci;
 	
-	String fieldText;
+	String tString;
+	
+	JLabel label;
+	JTextField txtFld;
 	
 	char type;
 	
 	Converter(char t){
 		type = t;
+		JLabel label = new JLabel("",0);
+		JTextField txtFld = new JTextField(10);
+		txtFld.setText("");
+		add(txtFld);
+		add(label);
 	}
 	
+	void setLabel(String str){
+		label.setText(str);
+		
+	}
 	public void getDecimal(String str) {
 		switch(type) {
 			case 'd':
@@ -52,6 +79,38 @@ public class Converter {
 		return;
 	}
 	
+	public void convert() {
+		switch(type) {
+			case 'd':
+				txtFld.setText(Integer.toString(dec));
+				break;
+			case 'h':
+				txtFld.setText(getHex());
+				break;
+				
+			case 'o':
+				txtFld.setText(getOct());
+				break;
+
+			case 'b':
+				txtFld.setText(getBin());
+				break;
+				
+			case 't':
+				txtFld.setText(getFloat());	
+				break;
+			case 'c':
+				tString = getHex();
+				txtFld.setText("0xAA" + tString.substring(2));
+				break;
+				
+			case 'f':
+				txtFld.setText(getFloat());
+				break;
+		}
+		return;
+	}
+	
 	private int binaryParse(String str) {
 		int temp = Integer.parseInt(str);
 		
@@ -60,6 +119,7 @@ public class Converter {
 		int pos = 0;
 		
 		while(temp > 0) {
+			//0 or 1 * 1,2,4,8 etc.
 			decimal += temp%10 * Math.pow(2,pos);
 			temp /= 10;
 			pos++;
