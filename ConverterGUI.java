@@ -18,12 +18,12 @@ import javax.swing.LayoutStyle;
 
 public class ConverterGUI {
 	//I think I only need to use 1 converter, but to simplfy testing we'll have all for now
-	Converter cDec;
-	Converter cHex;
-	Converter cOct;
-	Converter cBin;
-	Converter cTxt;
-	Converter cFlt;
+	private Converter cDec;
+	private Converter cHex;
+	private Converter cOct;
+	private Converter cBin;
+	private Converter cTxt;
+	private Converter cFlt;
 	
 	private JFrame frm;
 	
@@ -72,20 +72,7 @@ public class ConverterGUI {
         btnConv = new JButton("Convert");
         btnClr = new JButton("Clear");
         btnCol = new JButton("Pick Color");
-        fldDec = new JTextField();
-        fldHex = new JTextField();
-        fldOct = new JTextField();
-        fldBin = new JTextField();
-        fldCha = new JTextField();
-        fldFlt = new JTextField();
         colorPane = new JPanel();
-        lblDec = new JLabel("Decimal");
-        lblOct = new JLabel("Octal");
-        lblBin = new JLabel("Binary");
-        lblCol = new JLabel("Color");
-        lblTxt = new JLabel("Characters");
-        lblHex = new JLabel("Hexadecimal");
-        lblFlt = new JLabel("Float");
         
         btnConv.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent evt) {
@@ -143,19 +130,19 @@ public class ConverterGUI {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        lblDec.setText("Decimal");
+        cDec.setLabel("Decimal");
 
-        lblOct.setText("Octal");
+        cOct.setLabel("Octal");
 
-        lblBin.setText("Binary");
+        cBin.setLabel("Binary");
 
-        lblCol.setText("Color");
+       // cCol.setLabel("Color");
 
-        lblTxt.setText("Characters");
+        cTxt.setLabel("Characters");
 
-        lblHex.setText("HexaDecimal");
+        cHex.setLabel("HexaDecimal");
 
-        lblFlt.setText("Float");
+        cFlt.setLabel("Float");
 
         GroupLayout pnlPrimLayout = new GroupLayout(pnlPrim);
         pnlPrim.setLayout(pnlPrimLayout);
